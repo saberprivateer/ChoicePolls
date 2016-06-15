@@ -1,20 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="choiceApp">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="../node_modules/angular-material/angular-material.css"/>
+    <title>Choice Polls</title>
+    <link rel="shortcut icon" type="image/png" href="/app/assets/favicon.png"/>
 
-    <script src="../node_modules/angular/angular.js" type="text/javascript" ></script>
-    <script src="../node_modules/angular-animate/angular-animate.js" type="text/javascript" ></script>
-    <script src="../node_modules/angular-aria/angular-aria.js" type="text/javascript" ></script>
-    <script src="../node_modules/angular-material/angular-material.js" type="text/javascript" ></script>
+    <link rel="stylesheet" href="../node_modules/angular-material/angular-material.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.cyan-light_blue.min.css">
+    <link rel="stylesheet" href="../app/src/styles.css"/>
+    <script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
+
+    <script src="../node_modules/angular/angular.js" type="text/javascript"></script>
+    <script src="../node_modules/angular-animate/angular-animate.js" type="text/javascript"></script>
+    <script src="../node_modules/angular-aria/angular-aria.js" type="text/javascript"></script>
+    <script src="../node_modules/angular-material/angular-material.js" type="text/javascript"></script>
     <script src="../app/src/app.js"></script>
+    <!--    <script type="text/javascript">
+      !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+      analytics.load("7i7nktYihd4xfXCY7kiUqIrb7ARbTS6w");
+      analytics.page()
+      }}();
+    </script>-->
 
 </head>
-<body ng-app="choiceApp" ng-cloak layout="column">
+<body ng-controller="ChoiceCtrl" ng-cloak layout="column">
 <!-- Container #1 (see wireframe) -->
-<md-toolbar layout="row" >
+<md-toolbar layout="row">
     <h1>Choice Polls</h1>
 </md-toolbar>
 
@@ -22,11 +37,68 @@
 <div flex layout="row">
 
     <!-- Container #3 -->
-    <md-sidenav md-is-locked-open="true" class="lightblue">SIDE NAV</md-sidenav>
+    <md-sidenav md-is-locked-open="true" class="lightblue">Polls
+
+        <!--<md-progress-linear md-mode="determinate" value="10"></md-progress-linear>-->
+
+        <md-list>
+            <md-list-item ng-repeat="poll in polls">
+                <md-button ng-click="selected($index)">
+                {{poll.pollster}}
+                </md-button>
+            </md-list-item>
+        </md-list>
+
+    </md-sidenav>
 
     <!-- Container #4 -->
-    <md-content flex id="content" class="lightgreen">MAIN NAV</md-content>
+    <md-content flex id="content" class="lightgreen">MAIN NAV
+
+<!--        <md-button onclick="analytics.track('Button Pressed');" class="md-raised">Button</md-button>-->
+
+
+        <md-content>
+            <div>
+                <table class="highlight">
+                    {{polls[pollindex].method}}
+         <!--           <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>pollster</th>
+                        <th>partisan</th>
+                        <th>location</th>
+                        <th>questions</th>
+                    </tr>
+                    </thead>
+                    <tbody>-->
+
+              <!--      <tr ng-repeat="poll in polls">
+                        <td>{{poll.id}}</td>
+                        <td>{{poll.pollster}}</td>
+                        <td>{{poll.partisan}}</td>
+                        <td ng-repeat="question in poll.questions | filter:2016-president">{{question.topic}} <li ng-repeat="subpop in question.subpopulations">{{subpop.name}}</li></td>
+                    </tr>-->
+
+                    <!--</tbody>-->
+                </table>
+
+            </div>
+        </md-content>
+
+    </md-content>
+
 
 </div>
+<script>
+analytics.identify('f4ca124298', {
+name: 'Michael Bolton',
+email: 'mbolton@initech.com'
+});
+
+analytics.page('homepage');
+
+
+</script>
+
 </body>
 </html>
