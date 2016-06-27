@@ -60,20 +60,31 @@
 <md-toolbar layout="row">
     <div class="md-toolbar-tools">
         <h1><span>Choice Polls</span></h1>
+
         <span flex></span>
-        Libertarian
+        <!--Libertarian
         <md-switch style="padding-left: 8px">
             Green
         </md-switch>
         <span flex="5"></span>
-        <md-button class="md-raised" aria-label="Learn More">
+        -->
+        <md-button class="md-raised" aria-label="Learn More" ng-click="about=true" ng-hide="about">
             About
+        </md-button>
+        <md-button class="md-raised" aria-label="Learn More" ng-click="about=false" ng-show="about">
+            Polls
         </md-button>
         <span flex="2"></span>
     </div>
 </md-toolbar>
+<div layout-padding ng-show="about">
 
-<div layout="row">
+    <h4>ABOUT</h4>
+    <p>This is my about area</p>
+
+</div>
+
+<div layout="row" ng-hide="about">
     <div layout="column" layout-align="start center">
         <div style="padding-top:8px;text-align:center"><p><a href="http://www.realclearpolitics.com/epolls/2016/president/us/general_election_trump_vs_clinton_vs_johnson-5949.html">RealClearPolitics</a> Average <br> {{rcpaveragedate}}</p></div>
         <div>
